@@ -84,4 +84,12 @@ final readonly class PdoProductRepositoryAdapter implements ProductRepositoryAda
             ProductStatus::from((int) $row['status']),
         );
     }
+
+    public function sellerHasListedProducts(SellerId $sellerId) : bool
+    {
+        $query = "SELECT COUNT(*) FROM products WHERE seller_id = :id AND status =:status;";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(['id' => $sellerId->value(), 'status' => ProductStatus::LISTED->value]);
+        return $stmt->fetchColumn() ? true : false;
+    }
 }

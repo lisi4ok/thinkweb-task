@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Products\Domain;
 
 use App\Products\Domain\Exceptions\ProductNotFound;
+use App\Sellers\Domain\SellerId;
 
 interface ProductRepositoryAdapter
 {
@@ -21,4 +22,5 @@ interface ProductRepositoryAdapter
     public function save(Product $product) : void;
 
     public function delete(Product $product) : void;
+    public function sellerHasListedProducts(SellerId $sellerId) : bool;
 }
