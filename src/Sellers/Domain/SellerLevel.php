@@ -12,7 +12,7 @@ enum SellerLevel: int
     case SILVER = 2;
     case GOLD = 3;
 
-    public function upgrade() : self
+    public function upgrade(): self
     {
         if ($this === self::GOLD) {
             throw SellerConstraintViolation::sellerAtMaxLevel();
@@ -20,7 +20,7 @@ enum SellerLevel: int
         return self::from($this->value + 1);
     }
 
-    public function downgrade() : self
+    public function downgrade(): self
     {
         if ($this === self::BRONZE) {
             throw SellerConstraintViolation::sellerAtMinLevel();
@@ -28,8 +28,13 @@ enum SellerLevel: int
         return self::from($this->value - 1);
     }
 
-    public function maxListedProducts() : int
+    public function maxListedProducts(): int
     {
         return $this->value * 3;
+    }
+
+    public function isGold(): bool
+    {
+        return $this === self::GOLD;
     }
 }

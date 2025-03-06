@@ -6,8 +6,8 @@ namespace App\Sellers\Application\Commands;
 
 use App\Ddd\Application\CommandHandler;
 use App\Products\Domain\ProductRepository;
-use App\Sellers\Domain\Exceptions\SellerConstraintViolation;
-//use App\Sellers\Domain\Exceptions\CannotDeleteSellerException;
+//use App\Sellers\Domain\Exceptions\SellerConstraintViolation;
+use App\Sellers\Domain\Exceptions\CannotDeleteSellerException;
 use App\Sellers\Domain\SellerRepository;
 
 final readonly class DeleteSellerHandler implements CommandHandler
@@ -23,8 +23,8 @@ final readonly class DeleteSellerHandler implements CommandHandler
     {
         if ($this->productRepository->sellerHasListedProducts($command->sellerId)) {
             // we can use both cases
-            throw SellerConstraintViolation::sellerIsNotForDeletion();
-            //throw new CannotDeleteSellerException('Seller has products in the inventory and cannot be deleted.');
+            //throw SellerConstraintViolation::sellerCannotBeDeleted();
+            throw new CannotDeleteSellerException('Seller has products in the inventory and cannot be deleted.');
         }
 
         $seller = $this->sellerRepository->byId($command->sellerId);
