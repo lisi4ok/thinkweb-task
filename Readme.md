@@ -58,7 +58,7 @@ The database schema is given just as a reference.
 ## TODO 
 - Implement a "delete seller" use case; 
 - If the seller has products in the inventory (Products with status "LISTED"), the moderator should not be able to delete the seller;
-- <span style="color:red">**Optional / Bonus points**</span> &mdash; Try to minimize the dependencies between the modules. Products know about sellers but do sellers need to know about products? <span style="color:green">Answer: No</span>
+- <span style="color:red">**Optional / Bonus points**</span> &mdash; Try to minimize the dependencies between the modules. Products know about sellers but do sellers need to know about products? <span style="color:green"><strong>Answer:</strong> No. We want to minimize the dependencies between separated microservices.</span>
 - Igit smplement a business rule that a seller can't be upgraded to GOLD if he registered less than 30 days ago.
 
 
