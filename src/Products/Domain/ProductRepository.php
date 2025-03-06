@@ -8,6 +8,7 @@ use App\Ddd\EventDispatcher;
 use App\Products\Domain\Exceptions\ProductConstraintViolation;
 use App\Products\Domain\Exceptions\ProductNotFound;
 use App\Products\Domain\Specifications\DeletableProductSpecification;
+use App\Sellers\Domain\SellerId;
 
 final readonly class ProductRepository
 {
@@ -45,6 +46,11 @@ final readonly class ProductRepository
 
         $this->adapter->delete($product);
         $this->dispatchEvents($product);
+    }
+
+    public function sellerHasListedProducts(SellerId $sellerId) : bool
+    {
+        return $this->adapter->sellerHasListedProducts($sellerId);
     }
 
     private function dispatchEvents(Product $product) : void

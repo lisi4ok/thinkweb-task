@@ -17,4 +17,14 @@ final class SellerConstraintViolation extends DomainException implements SellerE
     {
         return new self('Seller is already at min level!');
     }
+
+    public static function sellerCannotBeDeleted() : self
+    {
+        return new self('The seller can not deleted!');
+    }
+
+    public static function sellerCannotBeUpgraded() : self
+    {
+        return new self('The seller can not upgraded!');
+    }
 }
